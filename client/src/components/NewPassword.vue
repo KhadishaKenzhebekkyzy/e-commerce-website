@@ -12,17 +12,17 @@
                 <div class="new-password-wrap">
                     <div class="group">
                         <label for="user" class="label">Новый пароль</label>
-                        <input id="user" type="password" class="input">
+                        <input v-model="password" id="user" type="password" class="input">
                     </div>
                     <div class="group">
                         <label for="user" class="label">Повторите пароль</label>
-                        <input id="user" type="password" class="input">
+                        <input v-model="password" id="user2" type="password" class="input">
                     </div>
                     <div class="group">
                         <div class="recover">
-                            <router-link to="/">
-                            <input type="submit" class="button" value="Сохранить пароль">
-                            </router-link>
+                            <!-- <router-link to="/"> -->
+                            <input type="submit" class="button" value="Сохранить пароль" @click="resetPassword">
+                            <!-- </router-link> -->
                             </div>
                     </div>
                 </div>
@@ -30,6 +30,30 @@
         </div>
     </div>
 </template>
+
+<script>
+import axios from "axios"    
+import {APIService} from '../../../routes/apiService';
+const apiService = new APIService();
+
+export default {
+    data(){
+        return {
+            password: '',
+            error: null
+        }
+    },
+    methods: {
+        resetPassword(){
+            apiService.resetPassword(this.password).then((response) => {
+                console.log(this.password);
+            }). catch(error => 
+                console.log(error))
+        }
+    }
+}
+
+</script>
 
 <style scoped>
     body{

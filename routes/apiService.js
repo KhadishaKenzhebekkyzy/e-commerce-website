@@ -25,8 +25,14 @@ async sendEmail(email){
                 })
 }
 
-// async resetPassword(todo){
-//     const url = `${API_URL}/resetPassword/`;
-//     return axios.get(url).then(response => response.data);
-// }
+async resetPassword(data){
+    await axios.post('/api/user/resetPassword', {
+        password: this.password
+    }).then(res => {
+                    res.data
+                }).catch(error => {
+                    console.log("Password wasn't updated")
+                    Promise.reject(error)
+                })
+}
 }

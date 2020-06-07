@@ -41,15 +41,15 @@ export default {
             error: null
         }
     },
-    methods: {
-        sendEmail(){
-            apiService.sendEmail(this.email).then((response) => {
-                console.log(this.email);
-            }). catch(error => 
-                console.log(error))
-                this.error = error.response.data.error
-        }
-    }
+    // methods: {
+    //     sendEmail(){
+    //         apiService.sendEmail(this.email).then((response) => {
+    //             console.log(this.email);
+    //         }). catch(error => 
+    //             console.log(error))
+    //             this.error = error.response.data.error
+    //     }
+    // }
 }
 
 </script>

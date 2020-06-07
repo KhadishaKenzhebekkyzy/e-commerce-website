@@ -136,34 +136,34 @@ router.listen(8080, function () {
     });
 
 //Change password
-// router.put('/resetPassword', async (req, res) => {
-// const {token, password} = req.body;
-//     verify(token, process.env.RESET_PASSWORD_KEY, function(error, decodedData){
-// if(error){
-//     return res.send("Incorrect token or token expired");
-// }
-// else{
-//     const user = findOne({ resetLink: token});
-//     if( !user){
-//         return res.status(400).send("User with this token does not exist"); 
+router.put('/resetPassword', async (req, res) => {
+const {token, password} = req.body;
+    verify(token, process.env.RESET_PASSWORD_KEY, function(error, decodedData){
+if(error){
+    return res.send("Incorrect token or token expired");
+}
+else{
+    const user = findOne({ resetLink: token});
+    if( !user){
+        return res.status(400).send("User with this token does not exist"); 
 
-//     }
-//     else {
-//         updateOne({password: password}, function(err, success) {
-//             if(err){
-//                 return res.status(400).send("Reset Password error"); 
-//             }
-//             else {
-//                 return res.status(200).send("Password changed"); 
-//             }
-//         })
+    }
+    else {
+        updateOne({password: password}, function(err, success) {
+            if(err){
+                return res.status(400).send("Reset Password error"); 
+            }
+            else {
+                return res.status(200).send("Password changed"); 
+            }
+        })
     
-// }
-// }
+}
+}
 
-// }) 
+}) 
 
-// });
+});
 
 
 

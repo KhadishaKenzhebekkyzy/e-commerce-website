@@ -5,10 +5,12 @@
 </template>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
 <script>
-
 export default {
   name: 'App',
-  data(){
+  data: function(){
+    return {
+    count: 0
+  }
   }
 }
 </script>
