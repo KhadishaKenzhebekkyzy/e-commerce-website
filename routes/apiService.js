@@ -25,11 +25,11 @@ async sendEmail(email){
                 })
 }
 
-async resetPassword(data){
+async resetPassword(password){
     await axios.post('/api/user/resetPassword', {
         password: this.password
     }).then(res => {
-                    res.data
+                    res.password
                 }).catch(error => {
                     console.log("Password wasn't updated")
                     Promise.reject(error)
