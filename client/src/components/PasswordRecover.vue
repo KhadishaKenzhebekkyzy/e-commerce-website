@@ -41,6 +41,7 @@ export default {
             error: null
         }
     },
+    
     methods: {
         sendEmail(){
             apiService.sendEmail(this.email).then((response) => {
@@ -50,6 +51,7 @@ export default {
                 this.error = error.response.data.error
         }
     }
+
 }
 
 </script>

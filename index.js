@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+var cors = require('cors');
 
 const authRoute = require('./routes/auth');
 dotenv.config();
@@ -13,6 +14,7 @@ mongoose.connect(process.env.DB_CONNECT, { useUnifiedTopology: true, useNewUrlPa
 
 
 app.use(express.json());
+app.use(cors({origin: 'http://localhost:8080'}));
 
 app.use(express.static('client'));
 app.get('*', (req, res) => {
