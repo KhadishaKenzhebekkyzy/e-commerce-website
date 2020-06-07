@@ -12,10 +12,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    phoneNumber: {
-        type: String,
-        required: true,
-    },
+    // phoneNumber: {
+    //     type: String,
+    //     required: true,
+    // },
     resetLink: {
         data: String,
     }

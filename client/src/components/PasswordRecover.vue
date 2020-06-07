@@ -15,13 +15,11 @@
                     </div>
                     <div class="group">
                         <label for="user" class="label">Введите вашу почту</label>
-                        <input id="user" type="email" class="input">
+                        <input v-model="email" class="input">
                     </div>
                     <div class="group">
                         <div class="recover">
-                            <router-link to="/success">
-                            <input type="submit" class="button" @click="passwordRecover" value="Восстановить">
-                            </router-link>
+                            <input type="submit" class="button" @click="sendEmail()" value="Восстановить">
                         </div>
                     </div>
                 </div>
@@ -29,20 +27,29 @@
         </div>
         </div>
 </template>
-
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
 <script>
+import axios from "axios"    
+import {APIService} from '../../../routes/apiService';
+const apiService = new APIService();
+
 
 export default {
     data(){
-        return{
-            email: ''
+        return {
+            email: '',
+            error: null
         }
-    } ,
-    mounted() {
-      let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('../../../routes/auth.js', 'https://www.google.com/recaptcha/api.js')
-      document.head.appendChild(recaptchaScript)
     },
+    methods: {
+        sendEmail(){
+            apiService.sendEmail(this.email).then((response) => {
+                console.log(this.email);
+            }). catch(error => 
+                console.log(error))
+                this.error = error.response.data.error
+        }
+    }
 }
 
 </script>

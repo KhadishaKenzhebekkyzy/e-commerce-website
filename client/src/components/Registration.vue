@@ -82,7 +82,8 @@
 </template>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script>
-
+import axios from "axios"    
+// import router from "../../../routes/auth"
 export default {
     data(){
         return{
@@ -90,12 +91,22 @@ export default {
             password: ''
         }
     },
-    mounted() {
-      let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('../../../routes/auth.js', 'https://www.google.com/recaptcha/api.js')
-      document.head.appendChild(recaptchaScript)
-    }
+    // methods: {
+    //     login: function() {
+    //         let data = {
+    //             email: email,
+    //             password: password
+    //         }
+    //         axios.post("/api/login", data).then(result => {
+    //             console.log("Logged in")
+    //             router.push("/login")
+    //         }).catch(errors => {
+    //             console.log("Cannot login")
+    //         })
+    //     }
+    // }
 }
+
 </script>
 
 <style scoped>
