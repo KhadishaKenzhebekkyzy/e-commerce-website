@@ -8,7 +8,10 @@
 
 export default {
   name: 'App',
-  data(){
+  data: function(){
+    return {
+    count: 0
+  }
   }
 }
 </script>
