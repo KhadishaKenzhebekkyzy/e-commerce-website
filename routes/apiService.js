@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:3000/api/user';
 axios.defaults.port = 3000;
-
+import router from '../model/User'
 
 export class APIService{
 
@@ -28,12 +28,9 @@ export class APIService{
                     })
     }
 
-
-    async sendEmail(email){
+    async sendEmail(data){
         const url = 'http://localhost:3000/api/user/sendEmail';
-        await axios.post(url, {
-            email: this.email
-        }).then(res => {
+        await axios.post(url, data).then(res => {
                         res.email
                     }).catch(error => {
                         console.log("Email wasn't sent")
@@ -43,9 +40,7 @@ export class APIService{
 
     async resetPassword(data){
         const url = 'http://localhost:3000/api/user/resetPassword';
-        await axios.put(url, {
-            password: this.password
-        }).then(res => {
+        await axios.put(url, data).then(res => {
                         res.data
                     }).catch(error => {
                         console.log("Password wasn't updated")

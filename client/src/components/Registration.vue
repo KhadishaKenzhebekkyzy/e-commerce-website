@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="group">
                                     <label for="pass" class="label">Повторите пароль</label>
-                                    <input id="pass2" type="password" class="input" data-type="password">
+                                    <input id="pass2" type="password" class="input" data-type="password" v-model="confirmPassword">
                                 </div>
                                 <div class="group">
                                     <div class="existed">
@@ -73,16 +73,23 @@ export default {
             email: '',
             password: '',
             phoneNumber: '',
+            confirmPassword: '',
             error: ''
         }
     },
     methods: {
         register(){
-            apiService.register({email: this.email, password: this.password, phoneNumber: this.phoneNumber}).then((response) => {
-                console.log(this.email);
-                console.log(this.password);
-            }). catch(error => 
-                console.log(error))
+            if (this.password!=this.confirmPassword){
+                alert("Those passwords didn't match")
+            }
+            else{
+                apiService.register({email: this.email, password: this.password, phoneNumber: this.phoneNumber}).then((response) => {
+                    this.$router.push({path: '/login'})
+                    console.log(this.email);
+                    console.log(this.password);
+                }). catch(error => 
+                    console.log(error))
+            }
         }
     }
 }

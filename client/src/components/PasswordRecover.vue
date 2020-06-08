@@ -44,11 +44,11 @@ export default {
     
     methods: {
         sendEmail(){
-            apiService.sendEmail(this.email).then((response) => {
-                console.log(this.email);
+            console.log(this.email);
+            apiService.sendEmail({email:this.email}).then((response) => {
+                this.$router.push({path: '/success'})
             }). catch(error => 
                 console.log(error))
-                this.error = error.response.data.error
         }
     }
 
