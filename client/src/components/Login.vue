@@ -3,12 +3,12 @@
         <div class="outer">
             <div class="login-wrap">
                 <div class="login-html">
-                        <router-link to="/login"><input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">Войти в личный кабинет</label></router-link>
-                        <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Регистрация</label>
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Войти в личный кабинет</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><router-link to="/register">Регистрация</router-link></label>
                         <div class="login-form"> 
-                            <div class="sign-up-htm">
+                            <div class="sign-in-htm">
                                 <div class="group">
-                                    <p id="p"><b>Регистрация</b></p>
+                                    <p id="p"><b>Авторизация</b></p>
                                     <br>
                                 </div>
                                 <div class="group">
@@ -20,16 +20,15 @@
                                     <input id="pass" type="password" class="input" data-type="password">
                                 </div>
                                 <div class="group">
-                                    <label for="pass" class="label">Повторите пароль</label>
-                                    <input id="pass2" type="password" class="input" data-type="password">
-                                </div>
-                                <div class="group">
-                                    <div class="existed">
-                                        <input type="submit" class="button2" value="Зарегистрироваться" @click="register">
-                                        <label for="tab-1" id="text">Есть аккаунт? <a id="existlink">Войдите</a></label>
+                                    <div class="forget">
+                                        <input type="submit" class="button" value="Войти" @click="login">
+                                        <router-link to="/sendEmail">Забыли пароль?</router-link>
                                     </div>
                                 </div>
-                            </div> 
+                                <div class="group">
+                                    <p>Дальнейший просмотр информации возможен только для зарегистрированных пользователей</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,12 +66,13 @@ export default {
     data(){
         return{
             email: '',
-            password: ''
+            password: '',
+            error: ''
         }
     },
     methods: {
-        register(){
-            apiService.register({email, password}).then((response) => {
+        login(){
+            apiService.login({email, password}).then((response) => {
                 console.log(this.data);
             }). catch(error => 
                 console.log(error))
@@ -149,7 +149,7 @@ export default {
         border-radius: 10px 10px 10px 10px;
     }
 
-    .login-html .sign-up-htm{
+    .login-html .sign-in-htm{
         position:absolute;
         width: 100%;
         transform:rotateY(180deg);
@@ -162,10 +162,6 @@ export default {
         display:none;
     }
 
-    label{
-        border-radius: 10px 10px 0px 0px;
-    }
-
     .login-html .tab{
         font-size:16px;
         padding:37px;
@@ -174,9 +170,13 @@ export default {
         border-bottom:2px solid transparent;
     }
 
-    .login-html .sign-up:checked + .tab{
+    .login-html .sign-in:checked + .tab{
         color:#149B5F;
         background-color: #FFFFFF;
+    }
+
+    label{
+        border-radius: 10px 10px 0px 0px;
     }
 
     .login-form{
@@ -197,7 +197,7 @@ export default {
         font-size: 15px;
     }
 
-    .login-form .group .existed .button2{
+    .login-form .group .button{
         margin-top: 50px;
         color:#FFFF;
         display:block;
@@ -208,6 +208,7 @@ export default {
     .login-form .group .input{
         color: #000000;
         display: block;
+        border: .2px;
         font-size: 14px;
     }
 
@@ -236,15 +237,14 @@ export default {
         text-align: start;
     }
 
-    .login-form .group .existed .button2{
+    .login-form .group .button{
         background: #149B5F;
-        display:inline-block;
-        margin:0 auto;
         border-radius: 45px;
+        width: 180px;
         height: 60px;
-        width: 100%;
-        margin-bottom: 30px;
-        margin-top: 30px;
+        margin: 20px;
+        margin-left: 0px;
+        display: inline-block;
     }
 
     .login-form .group .existed{
@@ -256,10 +256,10 @@ export default {
         color: #149B5F;
     }
 
-
-    .login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+    .login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
         transform:rotate(0);
-    } 
+    }
+
 
     .foot-lnk{
         text-align:center;

@@ -14,6 +14,7 @@ import Registration from './components/Registration.vue'
 import PasswordRecover from './components/PasswordRecover.vue'
 import NewPassword from './components/NewPassword.vue'
 import Success from './components/Success.vue'
+import Login from './components/Login.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -22,10 +23,15 @@ const router = new VueRouter({
     //   path: '/',
     //   name: 'loading',
     //   component: Loading
-    // },
+    // // },
     {
       path: '/login',
-      name: 'registration',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
       component: Registration
     },
     {

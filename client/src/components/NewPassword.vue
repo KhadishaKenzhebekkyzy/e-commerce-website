@@ -126,6 +126,11 @@ export default {
         border-bottom: 1px solid #8A8A8A;
         width: 100%;
     }
+
+    input:focus {
+        outline:none;
+    }
+
     .new-password-wrap .group .label{
         font-style: normal;
         font-weight: normal;

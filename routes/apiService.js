@@ -4,43 +4,58 @@ axios.defaults.port = 3000;
 
 
 export class APIService{
-constructor(){
-}
 
-// async login() {
-//     const url = `${API_URL}/api/login/`;
-//     return axios.get(url).then(response => response.data);
-// }
+    constructor(){
+    }
 
-// async register(pk) {
-//     const url = `${API_URL}/api/register/${pk}`;
-//     return axios.get(url).then(response => response.data);
-// }
-async sendEmail(email){
-    await axios.post('http://localhost:3000/api/user/sendEmail', {
-        "email": this.email
-    }).then(res => {
-                    res.email
-                }).catch(error => {
-                    console.log("Email wasn't sent")
-                    Promise.reject(error)
-                })
-}
+    async login({email, password}) {
+        const url = 'http://localhost:3000/api/user/login';
+        await axios.post(url, {
+            email: this.email,
+            password: this.password
+        }).then(res => {
+                        res.data
+                    }).catch(error => {
+                        console.log("You weren't logged in")
+                        Promise.reject(error)
+                    })
+    }
 
-async resetPassword(data){
-   
-    await axios.put('http://localhost:3000/api/user/resetPassword', {
-        password: this.password
-    }).then(res => {
-                    res.data
-                }).catch(error => {
-                    console.log("Password wasn't updated")
-                    Promise.reject(error)
-                })
-}
+    async register({email, password}) {
+        const url = 'http://localhost:3000/api/user/register';
+        await axios.post(url, {
+            email: this.email,
+            password: this.password
+        }).then(res => {
+                        res.data
+                    }).catch(error => {
+                        console.log("You weren't registered")
+                        Promise.reject(error)
+                    })
+    }
 
-// async resetPassword(todo){
-//     const url = `${API_URL}/resetPassword/`;
-//     return axios.get(url).then(response => response.data);
-// }
+
+    async sendEmail(email){
+        const url = 'http://localhost:3000/api/user/sendEmail';
+        await axios.post(url, {
+            email: this.email
+        }).then(res => {
+                        res.email
+                    }).catch(error => {
+                        console.log("Email wasn't sent")
+                        Promise.reject(error)
+                    })
+    }
+
+    async resetPassword(data){
+        const url = 'http://localhost:3000/api/user/resetPassword';
+        await axios.put(url, {
+            password: this.password
+        }).then(res => {
+                        res.data
+                    }).catch(error => {
+                        console.log("Password wasn't updated")
+                        Promise.reject(error)
+                    })
+    }
 }

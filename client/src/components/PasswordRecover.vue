@@ -19,7 +19,7 @@
                     </div>
                     <div class="group">
                         <div class="recover">
-                            <input type="submit" class="button" @click="sendEmail()" value="Восстановить">
+                            <input type="submit" class="button" @click="sendEmail" value="Восстановить">
                         </div>
                     </div>
                 </div>
@@ -135,6 +135,10 @@ export default {
         font-size: 14px;
         border-bottom: 1px solid #8A8A8A;
         width: 100%;
+    }
+
+    input:focus {
+        outline:none;
     }
 
     .password-wrap .group .label{
