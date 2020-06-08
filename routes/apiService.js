@@ -8,12 +8,9 @@ export class APIService{
     constructor(){
     }
 
-    async login({email, password}) {
+    async login(data) {
         const url = 'http://localhost:3000/api/user/login';
-        await axios.post(url, {
-            email: this.email,
-            password: this.password
-        }).then(res => {
+        await axios.post(url, data).then(res => {
                         res.data
                     }).catch(error => {
                         console.log("You weren't logged in")
@@ -21,12 +18,9 @@ export class APIService{
                     })
     }
 
-    async register({email, password}) {
+    async register(data) {
         const url = 'http://localhost:3000/api/user/register';
-        await axios.post(url, {
-            email: this.email,
-            password: this.password
-        }).then(res => {
+        await axios.post(url, data).then(res => {
                         res.data
                     }).catch(error => {
                         console.log("You weren't registered")

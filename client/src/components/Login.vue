@@ -12,12 +12,12 @@
                                     <br>
                                 </div>
                                 <div class="group">
-                                    <label for="user" class="label">Почта</label>
-                                    <input id="user" type="email" class="input">
+                                    <label for="user" class="label">Номер телефона</label>
+                                    <input id="user" type="tel" class="input" v-model="phoneNumber">
                                 </div>
                                 <div class="group">
                                     <label for="pass" class="label">Пароль</label>
-                                    <input id="pass" type="password" class="input" data-type="password">
+                                    <input id="pass" type="password" class="input" data-type="password" v-model="password">
                                 </div>
                                 <div class="group">
                                     <div class="forget">
@@ -65,15 +65,16 @@ const apiService = new APIService();
 export default {
     data(){
         return{
-            email: '',
+            phoneNumber: '',
             password: '',
             error: ''
         }
     },
     methods: {
         login(){
-            apiService.login({email, password}).then((response) => {
-                console.log(this.data);
+            console.log(this.phoneNumber);
+            console.log(this.password);
+            apiService.login({phoneNumber: this.phoneNumber, password: this.password}).then((response) => {
             }). catch(error => 
                 console.log(error))
         }
@@ -140,7 +141,7 @@ export default {
 
     .login-wrap{
         width:450px;
-        min-height: 590px;
+        min-height: 575px;
         margin-left: 600px;
         margin-bottom: 100px;
         position: absolute;

@@ -12,12 +12,16 @@
                                     <br>
                                 </div>
                                 <div class="group">
+                                    <label for="user" class="label">Номер телефона</label>
+                                    <input id="phone" type="tel" class="input" v-model="phoneNumber">
+                                </div>
+                                <div class="group">
                                     <label for="user" class="label">Почта</label>
-                                    <input id="user" type="email" class="input">
+                                    <input id="user" type="email" class="input" v-model="email">
                                 </div>
                                 <div class="group">
                                     <label for="pass" class="label">Пароль</label>
-                                    <input id="pass" type="password" class="input" data-type="password">
+                                    <input id="pass" type="password" class="input" data-type="password" v-model="password">
                                 </div>
                                 <div class="group">
                                     <label for="pass" class="label">Повторите пароль</label>
@@ -67,13 +71,16 @@ export default {
     data(){
         return{
             email: '',
-            password: ''
+            password: '',
+            phoneNumber: '',
+            error: ''
         }
     },
     methods: {
         register(){
-            apiService.register({email, password}).then((response) => {
-                console.log(this.data);
+            apiService.register({email: this.email, password: this.password, phoneNumber: this.phoneNumber}).then((response) => {
+                console.log(this.email);
+                console.log(this.password);
             }). catch(error => 
                 console.log(error))
         }
@@ -140,7 +147,7 @@ export default {
 
     .login-wrap{
         width:450px;
-        min-height: 590px;
+        min-height: 660px;
         margin-left: 600px;
         margin-bottom: 100px;
         position: absolute;
