@@ -38,8 +38,8 @@ export class APIService{
     }
 
     async resetPassword(data){
-        const url = `http://localhost:3000/api/user/resetPassword/${data.token}`;
-        await axios.post(url, data).then(res => {
+        const url = `http://localhost:3000/api/user/resetPassword`;
+        await axios.put(url, data).then(res => {
                         res.data
                         alert("Password changed!")
                     }).catch(error => {
