@@ -43,7 +43,7 @@ const router = new VueRouter({
       component: Success
     },
     {
-      path: '/resetPassword',
+      path: '/resetPassword/:token',
       name: 'resetPassword',
       component: NewPassword
     }

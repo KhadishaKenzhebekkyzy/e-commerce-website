@@ -38,16 +38,17 @@ export default {
     data(){
         return {
             email: '',
-            error: null
+            error: ''
         }
     },
     
     methods: {
         sendEmail(){
             console.log(this.email);
-            apiService.sendEmail({email:this.email}).then((response) => {
-                this.$router.push({path: '/success'})
-            }). catch(error => 
+            apiService.sendEmail({email:this.email}).then((response) => 
+                console.log(this.email)
+            )
+            . catch(error => 
                 console.log(error))
         }
     }

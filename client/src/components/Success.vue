@@ -11,10 +11,9 @@
                 <div class="success-wrap">
                     <img id="success" src="../assets/succes.png" alt="success">
                     <p>Спасибо! Мы отправили
-                        <br> Вам на почту форму
-                        <br> восстановление пароля
+                        <br> Вам на почту форму для
+                        <br> восстановления пароля
                     </p>
-                    <router-link to="/resetPassword">Изменить пароль</router-link>
                 </div>
             </div>
         </div>

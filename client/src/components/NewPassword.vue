@@ -40,22 +40,24 @@ export default {
         return {
             password: '',
             confirmPassword: '',
+            token: this.$route.params.token,
             error: null
         }
     },
     methods: {
         resetPassword(){
+            console.log(this.token)
             if (this.password!=this.confirmPassword){
                 alert("Those passwords didn't match")
             }
-                else{
-                apiService.resetPassword({password:this.password}).then((response) => {
-                    this.$router.push({path: '/login'})
+            else{
+                apiService.resetPassword({token: this.token, password:this.password}).then((response) => {
                     console.log(this.password);
+                    console.log(this.token);
                 }). catch(error => 
                     console.log(error))
-                }
             }
+        }
     }
 }
 </script>

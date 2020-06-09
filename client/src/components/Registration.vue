@@ -84,7 +84,6 @@ export default {
             }
             else{
                 apiService.register({email: this.email, password: this.password, phoneNumber: this.phoneNumber}).then((response) => {
-                    this.$router.push({path: '/login'})
                     console.log(this.email);
                     console.log(this.password);
                 }). catch(error => 

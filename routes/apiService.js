@@ -1,7 +1,6 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:3000/api/user';
 axios.defaults.port = 3000;
-import router from '../model/User'
 
 export class APIService{
 
@@ -14,7 +13,7 @@ export class APIService{
                         res.data
                     }).catch(error => {
                         console.log("You weren't logged in")
-                        Promise.reject(error)
+                        alert("The user does not exist")
                     })
     }
 
@@ -24,27 +23,27 @@ export class APIService{
                         res.data
                     }).catch(error => {
                         console.log("You weren't registered")
-                        Promise.reject(error)
+                        alert("The user already exists")
                     })
     }
 
     async sendEmail(data){
-        const url = 'http://localhost:3000/api/user/sendEmail';
+        const url = `http://localhost:3000/api/user/sendEmail`;
         await axios.post(url, data).then(res => {
-                        res.email
+                        res.data
                     }).catch(error => {
                         console.log("Email wasn't sent")
-                        Promise.reject(error)
+                        alert("Problem with the submission")
                     })
     }
 
     async resetPassword(data){
-        const url = 'http://localhost:3000/api/user/resetPassword';
-        await axios.put(url, data).then(res => {
+        const url = `http://localhost:3000/api/user/resetPassword/${data.token}`;
+        await axios.post(url, data).then(res => {
                         res.data
+                        alert("Password changed!")
                     }).catch(error => {
                         console.log("Password wasn't updated")
-                        Promise.reject(error)
                     })
     }
 }
