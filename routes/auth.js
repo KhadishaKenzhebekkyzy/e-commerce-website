@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
        return res.status(400).send('Email does not exist');
    }
    
-   const token = jwt.sign({_id: user._id}, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
+   const token = jwt.sign({_id: user._id}, process.env.RESET_PASSWORD_KEY, );
    
    const data = {
        from: "Mailgun Sandbox <postmaster@sandbox08b6982309f5441aae54081ffea1d5be.mailgun.org>",
@@ -110,7 +110,7 @@ router.post('/login', async (req, res) => {
 
    };
 
-   User.updateOne({resetLink: token}, function(err, success) {
+   user.updateOne({resetLink: token}, function(err, success) {
        if(err){
            return res.status(400).send('reset password link error');
        }
@@ -150,7 +150,7 @@ else{
     else {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        User.updateOne({password: hashedPassword},  function(err, success) {
+        user.updateOne({password: hashedPassword},  function(err, success) {
             if(err){
                 return res.status(400).send("Reset Password error"); 
             }
