@@ -90,47 +90,49 @@ router.post('/login', async (req, res) => {
 
     //Forgot password
     router.post('/sendEmail', async (req, res) => {
-        
-         //Check if user is in database 
-    const user = await User.findOne({ email: req.body.email});
-    if(!user){
-        return res.status(400).send('Email does not exist');
-    }
-    const token = jwt.sign({_id: user._id}, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
-    
-    const data = {
-        from: "Mailgun Sandbox <postmaster@sandbox08b6982309f5441aae54081ffea1d5be.mailgun.org>",
-        to: req.body.email,
-        subject: "Reset Password",
-        html: `
-        <h2> Please click on given link to reset </h2>
-        <p> ${process.env.CLIENT_URL}/resetpassword/${token} </p>
-        `
 
-    };
-    
-    User.updateOne({resetLink: token}, function(err, success) {
-        if(err){
-            return res.status(400).send('reset password link error');
-        }
-        else{
-            mg.messages().send(data, function (error, body) {
-                if(error){
-                    return res.send(error);
-                }
-                else{
-                    return res.send("Email sent");
-                    
-                }
-            });
-        }
-    })
+        //Check if user is in database 
+   const user = await User.findOne({ email: req.body.email});
+   if(!user){
+       return res.status(400).send('Email does not exist');
+   }
+   
+   const token = jwt.sign({_id: user._id}, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
+   
+   const data = {
+       from: "Mailgun Sandbox <postmaster@sandbox08b6982309f5441aae54081ffea1d5be.mailgun.org>",
+       to: req.body.email,
+       subject: "Reset Password",
+       html: `
+       <h2> Please click on given link to reset </h2>
+       <p> ${process.env.CLIENT_URL}/resetpassword/${token} </p>
+       `
 
-    
+   };
 
-  
+   User.updateOne({resetLink: token}, function(err, success) {
+       if(err){
+           return res.status(400).send('reset password link error');
+       }
+       else{
+           
+           mg.messages().send(data, function (error, body) {
+               if(error){
+                   return res.send(body);
+               }
+               else{
+                   return res.send("Email sent");
 
-    });
+               }
+           });
+       }
+   })
+
+
+
+
+
+   });
 
 //Change password
 router.put('/resetPassword', async (req, res) => {
