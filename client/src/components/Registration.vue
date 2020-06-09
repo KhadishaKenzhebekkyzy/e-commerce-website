@@ -84,6 +84,7 @@ export default {
             }
             else{
                 apiService.register({email: this.email, password: this.password, phoneNumber: this.phoneNumber}).then((response) => {
+                    
                     console.log(this.email);
                     console.log(this.password);
                 }). catch(error => 
@@ -132,6 +133,13 @@ export default {
         margin: 0px auto;
         width: 1050px;
     }
+    
+    #phone,
+    #user, 
+    #pass, 
+    #pass2{
+        margin-bottom: 20px;
+    }
 
     h1{
         font-size: 32px;
@@ -140,6 +148,7 @@ export default {
     p{
         font-size: 16px;
     }
+
 
     img{
         width: 400px;
@@ -153,7 +162,7 @@ export default {
 
     .login-wrap{
         width:450px;
-        min-height: 660px;
+        min-height: 685px;
         margin-left: 600px;
         margin-bottom: 100px;
         position: absolute;
@@ -244,7 +253,7 @@ export default {
         margin-left: 0px;
         font-weight: normal;
         font-size: 14px;
-        line-height: 17px;
+        line-height: 20px;
         color: #A9A9A9;
         text-align: start;
     }

@@ -139,9 +139,13 @@ export default {
         color: #149B5F;
     }
 
+    #user{
+        margin-bottom: 20px;
+    }
+
     .login-wrap{
         width:450px;
-        min-height: 575px;
+        min-height: 580px;
         margin-left: 600px;
         margin-bottom: 100px;
         position: absolute;
@@ -233,7 +237,7 @@ export default {
         margin-left: 0px;
         font-weight: normal;
         font-size: 14px;
-        line-height: 17px;
+        line-height: 20px;
         color: #A9A9A9;
         text-align: start;
     }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:3000/api/user';
 axios.defaults.port = 3000;
+import router from '../client/src/main'
 
 export class APIService{
 
@@ -21,6 +22,7 @@ export class APIService{
         const url = 'http://localhost:3000/api/user/register';
         await axios.post(url, data).then(res => {
                         res.data
+                        window.location.replace("/login");
                     }).catch(error => {
                         console.log("You weren't registered")
                         alert("The user already exists")
@@ -31,6 +33,7 @@ export class APIService{
         const url = `http://localhost:3000/api/user/sendEmail`;
         await axios.post(url, data).then(res => {
                         res.data
+                        window.location.replace("/success");
                     }).catch(error => {
                         console.log("Email wasn't sent")
                         alert("Problem with the submission")
@@ -38,10 +41,11 @@ export class APIService{
     }
 
     async resetPassword(data){
-        const url = `http://localhost:3000/api/user/resetPassword/${data.token}`;
-        await axios.post(url, data).then(res => {
+        const url = `http://localhost:3000/api/user/resetPassword`;
+        await axios.put(url, data).then(res => {
                         res.data
                         alert("Password changed!")
+                        window.location.replace("/login");
                     }).catch(error => {
                         console.log("Password wasn't updated")
                     })

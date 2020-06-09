@@ -44,7 +44,6 @@ export default {
     
     methods: {
         sendEmail(){
-            console.log(this.email);
             apiService.sendEmail({email:this.email}).then((response) => 
                 console.log(this.email)
             )
@@ -146,7 +145,7 @@ export default {
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
-        line-height: 17px;
+        line-height: 20px;
         color: #A9A9A9;
     }
 

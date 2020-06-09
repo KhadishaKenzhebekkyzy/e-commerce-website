@@ -83,8 +83,14 @@ export default {
         }
     #user{
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+        line-height: 20px;
     }
+    #user2{
+        margin-top: 10px;
+        line-height: 20px;
+    }
+
     .info{
         align-self: center;
         text-align: center;
@@ -144,7 +150,7 @@ export default {
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
-        line-height: 17px;
+        line-height: px;
         color: #A9A9A9;
     }
     .new-password-wrap .group .button{
