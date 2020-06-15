@@ -9,7 +9,7 @@ dotenv.config();
 const Key = process.env.MG_KEY;
 const DOMAIN = process.env.DOMAIN;
 const mg = mailgun({apiKey: Key, domain: DOMAIN});
-
+const verify = require('./verify-token');
 
 
 //Validation registration
@@ -84,7 +84,10 @@ router.post('/login', async (req, res) => {
      if(!validPassword){
         return res.status(400).send( "wrong password");
     }
-    res.send('Success');
+    
+    req.session.UserID = user._id;
+    res.send("Success");
+
 });
 
 
@@ -165,7 +168,6 @@ else{
 }) 
 
 });
-
 
 
 
