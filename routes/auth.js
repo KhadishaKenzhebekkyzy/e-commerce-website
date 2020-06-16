@@ -85,6 +85,11 @@ router.post('/login', async (req, res) => {
         return res.status(400).send( "wrong password");
     }
     
+    req.session.regenerate(function(err) {
+        if(err){
+           return res.send('could not regenerate session');
+        }
+      })
     req.session.UserID = user._id;
     res.send("Success");
 
@@ -169,7 +174,16 @@ else{
 
 });
 
+router.post('/logout', (req, res) => {
 
+    req.session.destroy(err =>{
+        if(err) {
+            return res.send("error in logout");
+        }
+        res.clearCookie('connect.sid');
+        return res.status(200).send('logout successful')
+    })
+})
 
 
 module.exports = router;

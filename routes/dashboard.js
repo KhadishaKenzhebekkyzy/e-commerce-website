@@ -8,30 +8,52 @@ user  = await User.findOne({ _id: userID})
 if(!user){
     return res.status(401).send("User not found");
 }
-const lastName = req.body.lastName;
-const firstName = req.body.firstName;
-const middleName = req.body.middleName;
-const growersID = req.body.growersID;
-const phoneNumber = req.body.phoneNumber;
-const organisationPhone = req.body.organisationPhone;
-const city = req.body.city;
-const street = req.body.street;
-const country = req.body.country;
+
 
 const newPassword = req.body.newPassword;
 const oldPassword = req.body.oldPassword;
 
-const profileImagePath = req.body.path;
 
+user.updateOne({
+    lastName: req.body.lastName,
+    firstName: req.body.firstName,
+    middleName: req.body.middleName,
+    growersID:  req.body.growersID,
+    phoneNumber: req.body.phoneNumber,
+    organisationPhone: req.body.organisationPhone,
+    city: req.body.city,
+    street: req.body.street,
+    country: req.body.country,
+    profileImagePath: req.body.path
+}, function(err, success) {
+    if(err){
+        return res.status(400).send('reset password link error');
+    }
+})
 
+//Password matching
 
+if(user.password != oldPassword){
+    return res.status(400).send('Password not verified');
+}
+else {
+
+    user.updateOne({
+        password: newPassword
+    }, function( err, success){
+        if(err){
+            res.status(400).send('Password was not updated');
+        }
+    })
+}
+return res.send('Successfully changed user information');
 
 })
 
 router.get('userInfo', async (req, res) => { 
     userID = req.session.userID;
     user  = await User.findOne({ _id: userID})
-    
+
     if(!user){
         return res.status(401).send("User not found");
     }
