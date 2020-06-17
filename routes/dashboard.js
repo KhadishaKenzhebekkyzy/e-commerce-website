@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const User = require('../model/User');
+const bcrypt = require('bcryptjs');
 
 
 router.post('/saveUserInfo', async (req,res) => {
-userID = req.session.userID;
+// userID = req.session.userID;
+userID = req.cookies.user;
 user  = await User.findOne({ _id: userID})
 if(!user){
     return res.status(401).send("User not found");
@@ -32,14 +34,15 @@ user.updateOne({
 })
 
 //Password matching
-
-if(user.password != oldPassword){
-    return res.status(400).send('Password not verified');
+const validPassword = await bcrypt.compare(oldPassword, user.password);
+if(!validPassword){
+    return res.status(400).send( "wrong password");
 }
 else {
-
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
     user.updateOne({
-        password: newPassword
+        password: hashedPassword
     }, function( err, success){
         if(err){
             res.status(400).send('Password was not updated');

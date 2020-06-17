@@ -10,11 +10,12 @@ const Key = process.env.MG_KEY;
 const DOMAIN = process.env.DOMAIN;
 const mg = mailgun({apiKey: Key, domain: DOMAIN});
 const verify = require('./verify-token');
-
+const session = require('express-session');
 
 //Validation registration
 
 const Joi = require('@hapi/joi');
+
 const registrationSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
@@ -84,14 +85,15 @@ router.post('/login', async (req, res) => {
      if(!validPassword){
         return res.status(400).send( "wrong password");
     }
-    
-    req.session.regenerate(function(err) {
-        if(err){
-           return res.send('could not regenerate session');
-        }
-      })
-    req.session.UserID = user._id;
-    res.send("Success");
+
+    // req.session.regenerate(function(err) {
+    //     if(err){
+    //        return res.send('could not regenerate session');
+    //     }
+    //     req.session.UserID = user._id;
+    //   })
+    res.cookie('user', user._id);
+    res.send(req.session.id);
 
 });
 
