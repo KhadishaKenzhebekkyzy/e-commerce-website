@@ -3,13 +3,12 @@
         <div class="outer">
             <div class="login-wrap">
                 <div class="login-html">
-                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Войти в личный кабинет</label>
-                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><router-link to="/register">Регистрация</router-link></label>
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab"><b>Войти в личный кабинет</b></label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><router-link to="/register"><b>Регистрация</b></router-link></label>
                         <div class="login-form"> 
                             <div class="sign-in-htm">
                                 <div class="group">
-                                    <p id="p"><b>Авторизация</b></p>
-                                    <br>
+                                    <p id="p">Авторизация</p>
                                 </div>
                                 <div class="group">
                                     <label for="user" class="label">Номер телефона</label>
@@ -127,6 +126,7 @@ export default {
 
     p{
         font-size: 16px;
+        margin-bottom: 30px;
     }
 
     img{
@@ -169,7 +169,7 @@ export default {
 
     .login-html .tab{
         font-size:16px;
-        padding:37px;
+        padding:38px;
         display:inline-block;
         background-color: #FBFBFB;
         border-bottom:2px solid transparent;
