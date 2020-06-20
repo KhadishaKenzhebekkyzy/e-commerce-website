@@ -108,11 +108,10 @@
           </div>
 
           <div class="col-md-8 col-sm-6 col-xs-10" id="footer-bottom" style="padding-right: 0px">
-            <a>О компании</a>
-            <a>Политика конфиденциальности</a>
-            <a>Помощь</a>
-            <a>Оплата онлайн</a>
-            <a>Тарифы</a>
+            <a href="/">О компании</a>
+            <a href="/publicOffer">Публичная оферта</a>
+            <a href="/contactUs">Связаться с нами</a>
+            <a href="/tariffs">Тарифы</a>
           </div>
 
           <div class="col-md-1 col-sm-3 col-xs-6" style="padding-left: 0px; padding-right: 0px">
@@ -153,6 +152,14 @@
   padding-top: 15px;
   padding-bottom: 15px;
   overflow: auto;
+}
+
+a{
+  color: black;
+}
+
+a:hover{
+  color:black;
 }
 
 button {

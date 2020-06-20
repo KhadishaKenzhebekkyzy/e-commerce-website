@@ -21,11 +21,28 @@ import EditAnnouncement from './components/PersonalArea/EditAnnouncement.vue'
 import CheckData from './components/PersonalArea/CheckData.vue'
 import AddEnterprise from './components/PersonalArea/AddEnterprise.vue'
 import MySubscriptions from './components/PersonalArea/MySubscriptions.vue'
-
+import PublicOffer from './components/Footer/PublicOffer.vue'
+import ContactUs from './components/Footer/ContactUs.vue'
+import Tariffs from './components/Footer/Tariffs.vue'
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
+    {
+      path: '/publicOffer',
+      name: 'publicOffer',
+      component: PublicOffer
+    },
+    {
+      path: '/contactUs',
+      name: 'contactUs',
+      component: ContactUs
+    },
+    {
+      path: '/tariffs',
+      name: 'tariffs',
+      component: Tariffs
+    },
     {
       path: '/login',
       name: 'login',
