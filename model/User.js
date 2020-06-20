@@ -18,7 +18,30 @@ const UserSchema = new Schema({
     },
     resetLink: {
         data: String,
+    },
+    lastName: {
+        type: String,
+    },
+    firstName : {
+        type: String,
+    },
+    growersID: {
+        type: String,
+    },
+    middleName: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
+    street: {
+        type: String,
+    },
+    profileImage: {
+        //NEED TO FIND THIS OUT
+
     }
+
 });
 
 module.exports = mongoose.model('User', UserSchema); 
