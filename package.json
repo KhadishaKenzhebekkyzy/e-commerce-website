@@ -20,8 +20,12 @@
     "@hapi/joi": "^17.1.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+<<<<<<< HEAD
+    "bulma": "^0.9.0",
+=======
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
+>>>>>>> 9c2a8c21b72ae303b02ed3a2017e0b9b17332130
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",

@@ -10,7 +10,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "vue": "^2.6.11",
     "vue-router": "^3.0.1",
     "vuex": "^3.4.0"
