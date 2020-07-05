@@ -38,8 +38,14 @@ const UserSchema = new Schema({
         type: String,
     },
     profileImage: {
-        //NEED TO FIND THIS OUT
+        type: String,
 
+    }, 
+    organisationPhone: {
+        type: String,
+    },
+    country: {
+        type: String,
     }
 
 });

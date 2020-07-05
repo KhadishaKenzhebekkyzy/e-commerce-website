@@ -8,8 +8,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cookieParser = require('cookie-parser');
 const authRoute = require('./routes/auth');
+const imageRouter = require('./routes/image');
 const dashBoardRoute = require('./routes/dashboard');
-
+const multer = require('multer');
+const methodOverride = require('method-override');
+const GridFsStorage = require('multer-gridfs-storage');
+const crypto = require('crypto');
 dotenv.config();
 
 //connecting to db
@@ -38,9 +42,33 @@ app.use(session({
 }));
 
 
+const storage = new GridFsStorage({
+    db: mongoose.connection,
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+            crypto.randomBytes(16, (err, buf) => {
+                if (err) {
+                    return reject(err);
+                }
+                const filename = buf.toString('hex') + path.extname(file.originalname);
+                const fileInfo = {
+                    filename: filename,
+                    bucketName: 'uploads'
+                };
+                resolve(fileInfo);
+            });
+        });
+    }
+});
+
+const upload = multer({ storage });
+
+
+
 app.use(cookieParser())
 app.use('/api/user', authRoute);
-app.use('/api/dashboard', dashBoardRoute)
+app.use('/api/dashboard', dashBoardRoute(upload))
+
 
 app.listen(3000, ()=> console.log('Server Running'));
 

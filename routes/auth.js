@@ -183,6 +183,7 @@ router.post('/logout', (req, res) => {
             return res.send("error in logout");
         }
         res.clearCookie('connect.sid');
+        res.clearCookie('user');
         return res.status(200).send('logout successful')
     })
 })

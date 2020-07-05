@@ -1,3 +1,4 @@
 node_modules
 .env
 verify-token.js
+image.js
