@@ -77,7 +77,11 @@ const AdvertSchema = new Schema({
     timestamp: {
          type: Date, 
          default: Date.now
-        }
+        },
+    images: {
+        type: [String]
+       
+    }
 
 })
 module.exports = mongoose.model('Advert', AdvertSchema); 

@@ -46,7 +46,14 @@ const UserSchema = new Schema({
     },
     country: {
         type: String,
-    }
+    },
+    favoritedAds:{
+        type: [String],
+    },
+    adCode: {
+        data: String,
+    },
+    
 
 });
 
